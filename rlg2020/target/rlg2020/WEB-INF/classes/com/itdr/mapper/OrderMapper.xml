@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itdr.mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.itdr.pojo.Order" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="onumber" property="onumber" jdbcType="INTEGER" />
+    <result column="oprice" property="oprice" jdbcType="DECIMAL" />
+    <result column="oraddress" property="oraddress" jdbcType="VARCHAR" />
+    <result column="osaddress" property="osaddress" jdbcType="VARCHAR" />
+    <result column="orname" property="orname" jdbcType="VARCHAR" />
+    <result column="osname" property="osname" jdbcType="VARCHAR" />
+    <result column="express" property="express" jdbcType="VARCHAR" />
+    <result column="ostate" property="ostate" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, onumber, oprice, oraddress, osaddress, orname, osname, express, ostate, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rlg_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rlg_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.itdr.pojo.Order" >
+    insert into rlg_order (id, onumber, oprice, 
+      oraddress, osaddress, orname, 
+      osname, express, ostate, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{onumber,jdbcType=INTEGER}, #{oprice,jdbcType=DECIMAL}, 
+      #{oraddress,jdbcType=VARCHAR}, #{osaddress,jdbcType=VARCHAR}, #{orname,jdbcType=VARCHAR}, 
+      #{osname,jdbcType=VARCHAR}, #{express,jdbcType=VARCHAR}, #{ostate,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itdr.pojo.Order" >
+    insert into rlg_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="onumber != null" >
+        onumber,
+      </if>
+      <if test="oprice != null" >
+        oprice,
+      </if>
+      <if test="oraddress != null" >
+        oraddress,
+      </if>
+      <if test="osaddress != null" >
+        osaddress,
+      </if>
+      <if test="orname != null" >
+        orname,
+      </if>
+      <if test="osname != null" >
+        osname,
+      </if>
+      <if test="express != null" >
+        express,
+      </if>
+      <if test="ostate != null" >
+        ostate,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="onumber != null" >
+        #{onumber,jdbcType=INTEGER},
+      </if>
+      <if test="oprice != null" >
+        #{oprice,jdbcType=DECIMAL},
+      </if>
+      <if test="oraddress != null" >
+        #{oraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="osaddress != null" >
+        #{osaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orname != null" >
+        #{orname,jdbcType=VARCHAR},
+      </if>
+      <if test="osname != null" >
+        #{osname,jdbcType=VARCHAR},
+      </if>
+      <if test="express != null" >
+        #{express,jdbcType=VARCHAR},
+      </if>
+      <if test="ostate != null" >
+        #{ostate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itdr.pojo.Order" >
+    update rlg_order
+    <set >
+      <if test="onumber != null" >
+        onumber = #{onumber,jdbcType=INTEGER},
+      </if>
+      <if test="oprice != null" >
+        oprice = #{oprice,jdbcType=DECIMAL},
+      </if>
+      <if test="oraddress != null" >
+        oraddress = #{oraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="osaddress != null" >
+        osaddress = #{osaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orname != null" >
+        orname = #{orname,jdbcType=VARCHAR},
+      </if>
+      <if test="osname != null" >
+        osname = #{osname,jdbcType=VARCHAR},
+      </if>
+      <if test="express != null" >
+        express = #{express,jdbcType=VARCHAR},
+      </if>
+      <if test="ostate != null" >
+        ostate = #{ostate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itdr.pojo.Order" >
+    update rlg_order
+    set onumber = #{onumber,jdbcType=INTEGER},
+      oprice = #{oprice,jdbcType=DECIMAL},
+      oraddress = #{oraddress,jdbcType=VARCHAR},
+      osaddress = #{osaddress,jdbcType=VARCHAR},
+      orname = #{orname,jdbcType=VARCHAR},
+      osname = #{osname,jdbcType=VARCHAR},
+      express = #{express,jdbcType=VARCHAR},
+      ostate = #{ostate,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
