@@ -163,6 +163,13 @@ public class UserController {
         return userServerResponse;
     }
 
+    /**
+     * 登录状态重置密码
+     * @param passwordOld
+     * @param passwordNew
+     * @param session
+     * @return
+     */
     @RequestMapping("reset_password.do")
     public ServerResponse<User> resetPassword(String passwordOld,String passwordNew,HttpSession session){
         //判断用户是否登录

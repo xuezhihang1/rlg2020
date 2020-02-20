@@ -1,8 +1,10 @@
-package com.itdr.pojo;
+package com.itdr.pojo.vo;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
-public class Product {
+public class ProductVo {
     private Integer id;
 
     private Integer cid;
@@ -15,6 +17,8 @@ public class Product {
 
     private String subImages;
 
+    private String detail;
+
     private Integer status;
 
     private Integer price;
@@ -23,11 +27,11 @@ public class Product {
 
     private Integer pnum;
 
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
-
-    private String detail;
 
     private String imageHost;
 
@@ -39,60 +43,20 @@ public class Product {
         this.id = id;
     }
 
-    public String getPname() {
-        return pname;
-    }
-
-    public void setPname(String pname) {
-        this.pname = pname == null ? null : pname.trim();
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public String getPtype() {
-        return ptype;
-    }
-
-    public void setPtype(String ptype) {
-        this.ptype = ptype == null ? null : ptype.trim();
-    }
-
-    public Integer getPnum() {
-        return pnum;
-    }
-
-    public void setPnum(Integer pnum) {
-        this.pnum = pnum;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
     public Integer getCid() {
         return cid;
     }
 
     public void setCid(Integer cid) {
         this.cid = cid;
+    }
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
     }
 
     public Integer getSubtitle() {
@@ -125,6 +89,46 @@ public class Product {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public String getPtype() {
+        return ptype;
+    }
+
+    public void setPtype(String ptype) {
+        this.ptype = ptype;
+    }
+
+    public Integer getPnum() {
+        return pnum;
+    }
+
+    public void setPnum(Integer pnum) {
+        this.pnum = pnum;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public String getDetail() {

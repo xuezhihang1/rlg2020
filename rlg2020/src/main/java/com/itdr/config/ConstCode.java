@@ -2,7 +2,7 @@ package com.itdr.config;
 
 public class ConstCode {
     public static final int DEFAULT_SUCCRSS=200;
-    public static final int DEFAULT_FAIL=200;
+    public static final int DEFAULT_FAIL=100;
 
     public enum UserEnum{
         //状态信息
@@ -43,6 +43,37 @@ public class ConstCode {
         private String desc;
 
         private UserEnum(int code,String desc){
+            this.code = code;
+            this.desc = desc;
+        }
+
+        public int getCode() {
+            return code;
+        }
+
+        public void setCode(int code) {
+            this.code = code;
+        }
+
+        public String getDesc() {
+            return desc;
+        }
+
+        public void setDesc(String desc) {
+            this.desc = desc;
+        }
+    }
+
+    public enum ProductEnum{
+
+        UNLAWFULNESS_PARAN(1,"非法的token"),
+        INEXISTENCE_PRODUCT(2,"商品不存在")
+        ;
+
+        private int code;
+        private String desc;
+
+        private ProductEnum(int code,String desc){
             this.code = code;
             this.desc = desc;
         }
