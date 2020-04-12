@@ -3,58 +3,86 @@
 <mapper namespace="com.itdr.mapper.ProductMapper" >
   <resultMap id="BaseResultMap" type="com.itdr.pojo.Product" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="cid" property="cid" jdbcType="INTEGER" />
-    <result column="pname" property="pname" jdbcType="VARCHAR" />
-    <result column="subtitle" property="subtitle" jdbcType="INTEGER" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="subtitle" property="subtitle" jdbcType="VARCHAR" />
     <result column="main_image" property="mainImage" jdbcType="VARCHAR" />
-    <result column="sub_images" property="subImages" jdbcType="LONGVARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="stock" property="stock" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
-    <result column="price" property="price" jdbcType="INTEGER" />
-    <result column="ptype" property="ptype" jdbcType="VARCHAR" />
-    <result column="pnum" property="pnum" jdbcType="INTEGER" />
+    <result column="is_new" property="isNew" jdbcType="BIT" />
+    <result column="is_hot" property="isHot" jdbcType="BIT" />
+    <result column="is_banner" property="isBanner" jdbcType="BIT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="sub_images" property="subImages" jdbcType="LONGVARCHAR" />
     <result column="detail" property="detail" jdbcType="LONGVARCHAR" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    id, cid,pname, subtitle,main_image,sub_images,status,price, ptype, pnum, create_time, update_time,detail
+
+  <!--代码片段-->
+  <sql id="Base_Column_List">
+    id,category_id,name,subtitle,main_image,sub_images,detail,price,stock,status,is_new,is_hot,is_banner,create_time,update_time
   </sql>
 
   <!--根据ID查询商品数据-->
   <select id="selectByPrimaryKey" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from rlg_product
+    from neuedu_product
     where id = #{productId,jdbcType=INTEGER}
   </select>
 
+
   <!--根据商品名称模糊查询-->
-  <select id="selectByPname" resultMap="BaseResultMap">
+  <select id="selectByName" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from rlg_product
-    where pname like #{keyWord}
+    from neuedu_product
+    where name like #{keyWord}
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from rlg_product
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
 
-    <update id="updateByPrimaryKey" parameterType="com.itdr.pojo.Product" >
-    update rlg_product
-    set
-      cid = #{cid,jdbcType=INTEGER},
-      pname = #{pname,jdbcType=VARCHAR},
-      subtitle = #{subtitle,jdbcType=INTEGER},
+    <select id="selectByType" parameterType="string" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from neuedu_product
+      where
+      <if test="type=='isNew'">
+        is_new = 1
+      </if>
+      <if test="type=='isHot'">
+        is_hot = 1
+      </if>
+      <if test="type=='isBanner'">
+        is_banner = 1
+      </if>
+    </select>
+    <select id="selectByProductId" resultType="com.itdr.pojo.Product">
+      select
+      <include refid="Base_Column_List" />
+      from neuedu_product
+      where id = #{productId,jdbcType=INTEGER}
+    </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from neuedu_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.itdr.pojo.Product" >
+    update neuedu_product
+    set category_id = #{categoryId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      subtitle = #{subtitle,jdbcType=VARCHAR},
       main_image = #{mainImage,jdbcType=VARCHAR},
-      sub_images = #{subImages,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      stock = #{stock,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
-      price = #{price,jdbcType=INTEGER},
-      ptype = #{ptype,jdbcType=VARCHAR},
-      pnum = #{pnum,jdbcType=INTEGER},
+      is_new = #{isNew,jdbcType=BIT},
+      is_hot = #{isHot,jdbcType=BIT},
+      is_banner = #{isBanner,jdbcType=BIT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

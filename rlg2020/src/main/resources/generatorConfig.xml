@@ -54,31 +54,28 @@
         </javaClientGenerator>
 
         <!-- 指定数据库表 -->
-        <table schema="" tableName="rlg_user" domainObjectName="User" enableCountByExample="false"
+        <table schema="" tableName="neuedu_user" domainObjectName="User" enableCountByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false" enableUpdateByExample="false"></table>
-
-        <table schema="" tableName="rlg_product" domainObjectName="Product" enableCountByExample="false"
+        <table schema="" tableName="neuedu_shipping" domainObjectName="Shipping" enableCountByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false" enableUpdateByExample="false"></table>
-
-        <table schema="" tableName="rlg_order" domainObjectName="Order" enableCountByExample="false"
+        <table schema="" tableName="neuedu_product" domainObjectName="Product" enableCountByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false" enableUpdateByExample="false"></table>
-
-        <table schema="" tableName="rlg_category" domainObjectName="Category" enableCountByExample="false"
+        <table schema="" tableName="neuedu_payinfo" domainObjectName="PayInfo" enableCountByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false" enableUpdateByExample="false"></table>
-
-        <table schema="" tableName="rlg_shoppingcar" domainObjectName="ShoppingCar" enableCountByExample="false"
+        <table schema="" tableName="neuedu_order_item" domainObjectName="OrderItem" enableCountByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false" enableUpdateByExample="false"></table>
-
-        <table schema="" tableName="rlg_wallet" domainObjectName="Wallet" enableCountByExample="false"
+        <table schema="" tableName="neuedu_order" domainObjectName="Order" enableCountByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false" enableUpdateByExample="false"></table>
-
-        <table schema="" tableName="rlg_shop" domainObjectName="Shop" enableCountByExample="false"
+        <table schema="" tableName="neuedu_category" domainObjectName="Category" enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false"></table>
+        <table schema="" tableName="neuedu_cart" domainObjectName="Cart" enableCountByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false" enableUpdateByExample="false"></table>
 

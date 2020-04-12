@@ -1,6 +1,5 @@
 package com.itdr.common;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.itdr.config.ConstCode;
@@ -9,11 +8,9 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
-
 @Setter
 @Getter
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
-//序列化json时，时null的对象，key也会消失
 public class ServerResponse<T> implements Serializable {
     private Integer status;
     private T data;
@@ -56,14 +53,13 @@ public class ServerResponse<T> implements Serializable {
     public static <T> ServerResponse successRS(T data) {
         return new ServerResponse(ConstCode.DEFAULT_SUCCRSS,data);
     }
-
-    public static <T> ServerResponse successRS(Integer status ,T data) {
+    public static <T> ServerResponse successRS(Integer status, T data) {
         return new ServerResponse(status,data);
     }
 
     //    成功的时候传入状态码、数据、信息
-    public static <T> ServerResponse successRS(Integer status,T data, String msg) {
-        return new ServerResponse(status,data, msg);
+    public static <T> ServerResponse successRS(Integer status, T data, String msg) {
+        return new ServerResponse(ConstCode.DEFAULT_SUCCRSS,data, msg);
     }
 
     public static <T> ServerResponse defeatedRS(Integer errorCode, String errorMessage) {
@@ -75,9 +71,8 @@ public class ServerResponse<T> implements Serializable {
     }
 
     @JsonIgnore
-//让success不在json序列化结果之中
+    //让success不在json序列化结果之中
     public boolean isSuccess() {
         return this.status == ConstCode.DEFAULT_SUCCRSS;
     }
-
 }

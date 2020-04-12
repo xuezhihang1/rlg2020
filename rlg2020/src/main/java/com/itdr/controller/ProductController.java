@@ -2,8 +2,7 @@ package com.itdr.controller;
 
 import com.itdr.common.ServerResponse;
 import com.itdr.pojo.Category;
-import com.itdr.pojo.Product;
-import com.itdr.pojo.vo.ProductVo;
+import com.itdr.pojo.vo.ProductVO;
 import com.itdr.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ResponseBody
 @RequestMapping("/portal/product/")
 public class ProductController {
-
     @Autowired
     ProductService productService;
 
@@ -25,7 +23,7 @@ public class ProductController {
      * @return
      */
     @RequestMapping("basecategory.do")
-    public ServerResponse<Category> baseCategory(Integer pid){
+    public ServerResponse<Category> baseCategory(Integer pid) {
         return productService.baseCategory(pid);
     }
 
@@ -34,9 +32,9 @@ public class ProductController {
      * @param productId
      * @return
      */
-    @RequestMapping("datail.do")
-    public ServerResponse<Product> datail(Integer productId){
-        return productService.datail(productId);
+    @RequestMapping("detail.do")
+    public ServerResponse<ProductVO> detail(Integer productId) {
+        return productService.detail(productId);
     }
 
     /**
@@ -45,10 +43,15 @@ public class ProductController {
      * @return
      */
     @RequestMapping("list.do")
-    public ServerResponse<ProductVo> list(String keyWord,
+    public ServerResponse<ProductVO> list(String keyWord,
                                           @RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
                                           @RequestParam(value = "pageSize",required = false,defaultValue = "5")Integer pageSize,
-                                          @RequestParam(value = "orderBy",required = false,defaultValue = "")String orderBy){
+                                          @RequestParam(value = "orderBy",required = false,defaultValue = "")String orderBy) {
         return productService.list(keyWord,pageNum,pageSize,orderBy);
+    }
+
+    @RequestMapping("showproduct.do")
+    public ServerResponse<ProductVO> showProduct(String type) {
+        return productService.showProduct(type);
     }
 }
